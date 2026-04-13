@@ -9,92 +9,135 @@
 
     <style>
         :root {
-            --color-principal: #e198b2; 
+            --color-principal: #e198b2; /* Rosa pastel elegante */
             --color-dorado: #c5a059;
+            --color-fondo: #fff5f8;
+            --texto: #333;
         }
 
         body {
-            background-color: #fff5f8;
-            /* Fondo sutil floral */
-            background-image: url('https://www.transparenttextures.com/patterns/p6.png');
+            background-color: var(--color-fondo);
+            /* PATRÓN DE FONDO FLORAL CSS (Cero imágenes externas) */
+            background-image:  linear-gradient(30deg, #fce4ec 12%, transparent 12.5%, transparent 87%, #fce4ec 87.5%, #fce4ec), linear-gradient(150deg, #fce4ec 12%, transparent 12.5%, transparent 87%, #fce4ec 87.5%, #fce4ec), linear-gradient(30deg, #fce4ec 12%, transparent 12.5%, transparent 87%, #fce4ec 87.5%, #fce4ec), linear-gradient(150deg, #fce4ec 12%, transparent 12.5%, transparent 87%, #fce4ec 87.5%, #fce4ec), linear-gradient(60deg, #fce4ec77 25%, transparent 25.5%, transparent 75%, #fce4ec77 75%, #fce4ec77), linear-gradient(60deg, #fce4ec77 25%, transparent 25.5%, transparent 75%, #fce4ec77 75%, #fce4ec77);
+            background-size: 80px 140px;
+            background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
+            
             font-family: 'Montserrat', sans-serif;
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            color: #333;
+            color: var(--texto);
+            padding: 20px;
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             max-width: 480px;
-            width: 90%;
+            width: 100%;
             padding: 60px 25px;
             border-radius: 30px;
             text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-            margin: 40px 0;
-            border: 1px solid #fce4ec;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+            border: 2px solid #fce4ec;
             position: relative;
             overflow: hidden;
+            box-sizing: border-box;
         }
 
-        /* Flores en las esquinas - Imágenes Reales */
-        .flower {
+        /* MARCO DORADO DECORATIVO INTERNO */
+        .card::before {
+            content: "";
             position: absolute;
-            width: 180px; /* Tamaño de las flores */
-            z-index: 0;
+            top: 15px; bottom: 15px; left: 15px; right: 15px;
+            border: 1px solid var(--color-dorado);
+            border-radius: 20px;
             pointer-events: none;
+            opacity: 0.5;
+            z-index: 1;
+        }
+
+        /* FLORES DECORATIVAS SVG (Cero imágenes externas) */
+        .flower-decor {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            opacity: 0.8;
+            z-index: 0;
+            animation: flowerSway 6s ease-in-out infinite;
         }
         .top-left {
-            top: -20px;
-            left: -20px;
+            top: -30px; left: -30px;
         }
         .bottom-right {
-            bottom: -20px;
-            right: -20px;
+            bottom: -30px; right: -30px;
             transform: rotate(180deg);
+            animation-delay: 3s;
         }
 
-        h1 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 4px; color: #999; margin-bottom: 0; position: relative; z-index: 1; }
-        .nombre { font-family: 'Dancing Script', cursive; font-size: 4.5rem; color: var(--color-principal); margin: 10px 0; position: relative; z-index: 1; text-shadow: 1px 1px 2px rgba(0,0,0,0.05); }
-        .frase { font-style: italic; color: #666; font-size: 0.95rem; line-height: 1.6; margin-bottom: 30px; position: relative; z-index: 1; }
+        h1 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 4px; color: #999; margin-bottom: 0; position: relative; z-index: 2; }
+        .nombre { font-family: 'Dancing Script', cursive; font-size: 4.8rem; color: var(--color-principal); margin: 10px 0; position: relative; z-index: 2; text-shadow: 2px 2px 4px rgba(0,0,0,0.05); }
+        .frase { font-style: italic; color: #666; font-size: 0.95rem; line-height: 1.6; margin: 0 auto 30px; max-width: 80%; position: relative; z-index: 2; }
 
         .info-evento {
             font-size: 1.1rem;
             border-top: 1px solid #fce4ec;
             border-bottom: 1px solid #fce4ec;
-            padding: 20px 0;
-            margin: 25px 0;
+            padding: 25px 0;
+            margin: 30px 0;
             position: relative;
-            z-index: 1;
+            z-index: 2;
             background: rgba(255, 245, 248, 0.5);
         }
+        .info-evento p { margin: 10px 0; }
+        .salon { font-size: 1.3rem; color: var(--color-dorado); font-weight: 600; }
 
         /* Contador */
-        .countdown { display: flex; justify-content: center; gap: 12px; margin-bottom: 30px; position: relative; z-index: 1; }
-        .time-box { background: var(--color-principal); color: white; padding: 10px; border-radius: 12px; width: 68px; box-shadow: 0 4px 10px rgba(225, 152, 178, 0.3); }
-        .time-box span { display: block; font-size: 1.6rem; font-weight: bold; }
-        .time-box label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; }
+        .countdown { display: flex; justify-content: center; gap: 12px; margin-bottom: 35px; position: relative; z-index: 2; }
+        .time-box { 
+            background: var(--color-principal); 
+            color: white; 
+            padding: 12px; 
+            border-radius: 15px; 
+            width: 70px; 
+            box-shadow: 0 6px 15px rgba(225, 152, 178, 0.3);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .time-box span { display: block; font-size: 1.8rem; font-weight: bold; }
+        .time-box label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9; }
 
-        /* Mapa Seguro */
-        .map-container { margin: 25px 0; border-radius: 20px; overflow: hidden; border: 3px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.08); position: relative; z-index: 1; }
+        /* Mapa */
+        .map-container { margin: 30px 0; border-radius: 20px; overflow: hidden; border: 4px solid white; box-shadow: 0 8px 25px rgba(0,0,0,0.1); position: relative; z-index: 2; }
         iframe { width: 100%; height: 250px; border: 0; }
 
         /* Botones */
-        .btn { display: block; text-decoration: none; padding: 16px; border-radius: 50px; font-weight: 600; margin: 12px 0; transition: 0.4s; position: relative; z-index: 1; }
-        .btn-rsvp { background: var(--color-principal); color: white; box-shadow: 0 6px 20px rgba(225, 152, 178, 0.4); }
+        .btn { display: block; text-decoration: none; padding: 18px; border-radius: 50px; font-weight: 600; margin: 15px 0; transition: 0.4s; position: relative; z-index: 2; font-size: 1rem; }
+        .btn-rsvp { background: var(--color-principal); color: white; box-shadow: 0 8px 25px rgba(225, 152, 178, 0.4); border: 1px solid rgba(255,255,255,0.2); }
         .btn-map { background: white; color: var(--color-dorado); border: 2px solid var(--color-dorado); }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+        .btn:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.2); }
+
+        /* ANIMACIONES */
+        @keyframes flowerSway {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(5deg) scale(1.05); }
+        }
 
     </style>
 </head>
 <body>
 
     <div class="card">
-        <img src="https://i.ibb.co/YyY4R0G/flower-corner.png" class="flower top-left" alt="decoración">
-        <img src="https://i.ibb.co/YyY4R0G/flower-corner.png" class="flower bottom-right" alt="decoración">
+        <svg class="flower-decor top-left" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="10" fill="#c5a059" opacity="0.3"/>
+            <path d="M50 40C55 20 75 20 80 40C85 60 65 65 50 60C35 65 15 60 20 40C25 20 45 20 50 40Z" fill="#e198b2" opacity="0.6"/>
+            <path d="M40 50C20 45 20 25 40 20C60 15 65 35 60 50C65 65 60 85 40 80C25 75 15 55 40 50Z" fill="#fce4ec" opacity="0.7"/>
+        </svg>
+        <svg class="flower-decor bottom-right" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="10" fill="#c5a059" opacity="0.3"/>
+            <path d="M50 40C55 20 75 20 80 40C85 60 65 65 50 60C35 65 15 60 20 40C25 20 45 20 50 40Z" fill="#e198b2" opacity="0.6"/>
+            <path d="M40 50C20 45 20 25 40 20C60 15 65 35 60 50C65 65 60 85 40 80C25 75 15 55 40 50Z" fill="#fce4ec" opacity="0.7"/>
+        </svg>
 
         <h1>Mis XV Años</h1>
         <div class="nombre">Vanessa</div>
@@ -111,19 +154,20 @@
         <div class="info-evento">
             <p>📅 <strong>13 de Junio de 2026</strong></p>
             <p>⏰ 16:00 Horas (4:00 PM)</p>
-            <p>📍 Salón: <strong>La Casa Grande</strong></p>
+            <p>📍 Salón: <span class="salon">La Casa Grande</span></p>
         </div>
 
         <div class="map-container">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.661!2d-99.167!3d19.432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDI1JzU1LjIiTiA5OcKwMTAnMDAuOCJX!5e0!3m2!1ses!2smx!4v1700000000000!5m2!1ses!2smx" allowfullscreen="" loading="lazy"></iframe>
+            <iframe src="https://googleusercontent.com/maps.google.com/6" allowfullscreen="" loading="lazy"></iframe>
         </div>
 
-        <a href="https://maps.app.goo.gl/qX8W6C8XJ3Wp9wU8A" target="_blank" class="btn btn-map">📍 Abrir Ubicación en Maps</a>
+        <a href="https://googleusercontent.com/maps.google.com/7" target="_blank" class="btn btn-map">📍 Abrir Ubicación en Maps</a>
         
         <a href="https://wa.me/525527516064?text=¡Hola! Confirmo mi asistencia a los XV de Vanessa." class="btn btn-rsvp">💌 Confirmar Asistencia</a>
     </div>
 
     <script>
+        // Fecha del evento: 13 de junio de 2026 a las 16:00
         const eventDate = new Date("June 13, 2026 16:00:00").getTime();
 
         setInterval(() => {
@@ -131,7 +175,7 @@
             const diff = eventDate - now;
 
             if (diff < 0) {
-                document.getElementById("countdown").innerHTML = "<h3>¡Es hoy!</h3>";
+                document.getElementById("countdown").innerHTML = "<h3>¡Llegó el gran día!</h3>";
                 return;
             }
 
