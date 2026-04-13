@@ -11,24 +11,20 @@
         :root {
             --color-principal: #e198b2; /* Rosa pastel elegante */
             --color-dorado: #c5a059;
-            --color-fondo: #fff5f8;
-            --texto: #333;
+            --texto-oscuro: #333;
+            --texto-suave: #666;
+            --fondo-acuarela: #fcf6f8;
         }
 
         body {
-            background-color: var(--color-fondo);
-            /* PATRÓN DE FONDO FLORAL CSS (Cero imágenes externas) */
-            background-image:  linear-gradient(30deg, #fce4ec 12%, transparent 12.5%, transparent 87%, #fce4ec 87.5%, #fce4ec), linear-gradient(150deg, #fce4ec 12%, transparent 12.5%, transparent 87%, #fce4ec 87.5%, #fce4ec), linear-gradient(30deg, #fce4ec 12%, transparent 12.5%, transparent 87%, #fce4ec 87.5%, #fce4ec), linear-gradient(150deg, #fce4ec 12%, transparent 12.5%, transparent 87%, #fce4ec 87.5%, #fce4ec), linear-gradient(60deg, #fce4ec77 25%, transparent 25.5%, transparent 75%, #fce4ec77 75%, #fce4ec77), linear-gradient(60deg, #fce4ec77 25%, transparent 25.5%, transparent 75%, #fce4ec77 75%, #fce4ec77);
-            background-size: 80px 140px;
-            background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
-            
+            background-color: #f0f0f0;
             font-family: 'Montserrat', sans-serif;
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            color: var(--texto);
+            color: var(--texto-oscuro);
             padding: 20px;
         }
 
@@ -37,133 +33,169 @@
             max-width: 480px;
             width: 100%;
             padding: 60px 25px;
-            border-radius: 30px;
+            border-radius: 2px; /* Estilo de tarjeta impresa */
             text-align: center;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.15);
-            border: 2px solid #fce4ec;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
             position: relative;
             overflow: hidden;
             box-sizing: border-box;
+            border: 1px solid #eee;
         }
 
-        /* MARCO DORADO DECORATIVO INTERNO */
-        .card::before {
-            content: "";
+        /* FONDO DE ACUARELA SUAVE */
+        .card-bg {
             position: absolute;
-            top: 15px; bottom: 15px; left: 15px; right: 15px;
-            border: 1px solid var(--color-dorado);
-            border-radius: 20px;
-            pointer-events: none;
-            opacity: 0.5;
-            z-index: 1;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: var(--fondo-acuarela);
+            background-image: radial-gradient(#fff 20%, transparent 20%), radial-gradient(#fff 20%, transparent 20%);
+            background-size: 10px 10px;
+            background-position: 0 0, 5px 5px;
+            opacity: 0.1;
+            z-index: 0;
         }
 
-        /* FLORES DECORATIVAS SVG (Cero imágenes externas) */
+        /* MARCO FLORAL SVG ESTILO ACUARELA (Integrado para cero errores) */
         .flower-decor {
             position: absolute;
-            width: 150px;
-            height: 150px;
-            opacity: 0.8;
-            z-index: 0;
-            animation: flowerSway 6s ease-in-out infinite;
+            width: 200px;
+            height: 200px;
+            z-index: 1;
+            pointer-events: none;
         }
         .top-left {
-            top: -30px; left: -30px;
+            top: -20px; left: -20px;
+        }
+        .top-right {
+            top: -20px; right: -20px;
+            transform: scaleX(-1);
+        }
+        .bottom-left {
+            bottom: -20px; left: -20px;
+            transform: scaleY(-1);
         }
         .bottom-right {
-            bottom: -30px; right: -30px;
-            transform: rotate(180deg);
-            animation-delay: 3s;
+            bottom: -20px; right: -20px;
+            transform: scale(-1);
         }
 
-        h1 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 4px; color: #999; margin-bottom: 0; position: relative; z-index: 2; }
-        .nombre { font-family: 'Dancing Script', cursive; font-size: 4.8rem; color: var(--color-principal); margin: 10px 0; position: relative; z-index: 2; text-shadow: 2px 2px 4px rgba(0,0,0,0.05); }
-        .frase { font-style: italic; color: #666; font-size: 0.95rem; line-height: 1.6; margin: 0 auto 30px; max-width: 80%; position: relative; z-index: 2; }
-
-        .info-evento {
-            font-size: 1.1rem;
-            border-top: 1px solid #fce4ec;
-            border-bottom: 1px solid #fce4ec;
-            padding: 25px 0;
-            margin: 30px 0;
+        /* TEXTOS PRINCIPALES */
+        .content {
             position: relative;
             z-index: 2;
-            background: rgba(255, 245, 248, 0.5);
         }
-        .info-evento p { margin: 10px 0; }
-        .salon { font-size: 1.3rem; color: var(--color-dorado); font-weight: 600; }
 
-        /* Contador */
-        .countdown { display: flex; justify-content: center; gap: 12px; margin-bottom: 35px; position: relative; z-index: 2; }
+        h1 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 4px; color: #999; margin-bottom: 5px; }
+        .nombre { 
+            font-family: 'Dancing Script', cursive; 
+            font-size: 5.2rem; 
+            color: var(--texto-oscuro); 
+            margin: 10px 0; 
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.03); 
+        }
+        .xv-title {
+            font-size: 1.1rem;
+            color: var(--color-dorado);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+        .frase { font-style: italic; color: #777; font-size: 1rem; line-height: 1.7; margin: 0 auto 30px; max-width: 85%; }
+
+        /* BLOQUE DE FECHA Y SALÓN */
+        .event-block {
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            padding: 30px 0;
+            margin: 30px 0;
+            background: rgba(255,255,255,0.6);
+        }
+        .date {
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            color: var(--texto-oscuro);
+            margin-bottom: 15px;
+        }
+        .time {
+            font-size: 1.1rem;
+            color: var(--color-principal);
+            font-weight: 600;
+        }
+        .salon { 
+            font-size: 1.5rem; 
+            color: var(--texto-oscuro); 
+            font-weight: 600; 
+            margin-top: 15px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* CONTADOR */
+        .countdown { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; }
         .time-box { 
-            background: var(--color-principal); 
-            color: white; 
-            padding: 12px; 
-            border-radius: 15px; 
-            width: 70px; 
-            box-shadow: 0 6px 15px rgba(225, 152, 178, 0.3);
-            border: 1px solid rgba(255,255,255,0.3);
+            color: var(--texto-oscuro); 
+            padding: 10px; 
+            border-radius: 8px; 
+            width: 65px; 
+            border: 1px solid #eee;
+            background: white;
         }
         .time-box span { display: block; font-size: 1.8rem; font-weight: bold; }
-        .time-box label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9; }
+        .time-box label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #999; }
 
-        /* Mapa */
-        .map-container { margin: 30px 0; border-radius: 20px; overflow: hidden; border: 4px solid white; box-shadow: 0 8px 25px rgba(0,0,0,0.1); position: relative; z-index: 2; }
-        iframe { width: 100%; height: 250px; border: 0; }
+        /* MAPA Y BOTONES */
+        .map-container { margin: 30px 0; border-radius: 2px; overflow: hidden; border: 1px solid #eee; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        iframe { width: 100%; height: 200px; border: 0; }
 
-        /* Botones */
-        .btn { display: block; text-decoration: none; padding: 18px; border-radius: 50px; font-weight: 600; margin: 15px 0; transition: 0.4s; position: relative; z-index: 2; font-size: 1rem; }
-        .btn-rsvp { background: var(--color-principal); color: white; box-shadow: 0 8px 25px rgba(225, 152, 178, 0.4); border: 1px solid rgba(255,255,255,0.2); }
-        .btn-map { background: white; color: var(--color-dorado); border: 2px solid var(--color-dorado); }
-        .btn:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.2); }
-
-        /* ANIMACIONES */
-        @keyframes flowerSway {
-            0%, 100% { transform: rotate(0deg) scale(1); }
-            50% { transform: rotate(5deg) scale(1.05); }
-        }
+        .btn { display: block; text-decoration: none; padding: 18px; border-radius: 2px; font-weight: 600; margin: 15px 0; transition: 0.4s; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+        .btn-rsvp { background: var(--texto-oscuro); color: white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .btn-map { background: white; color: var(--color-dorado); border: 1px solid var(--color-dorado); }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
 
     </style>
 </head>
 <body>
 
     <div class="card">
-        <svg class="flower-decor top-left" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="10" fill="#c5a059" opacity="0.3"/>
-            <path d="M50 40C55 20 75 20 80 40C85 60 65 65 50 60C35 65 15 60 20 40C25 20 45 20 50 40Z" fill="#e198b2" opacity="0.6"/>
-            <path d="M40 50C20 45 20 25 40 20C60 15 65 35 60 50C65 65 60 85 40 80C25 75 15 55 40 50Z" fill="#fce4ec" opacity="0.7"/>
+        <div class="card-bg"></div>
+
+        <svg class="flower-decor top-left" viewBox="0 0 200 200">
+            <path d="M50 20C70 10 90 20 100 40C110 20 130 10 150 20C160 40 150 60 130 70C150 80 160 100 150 120C130 130 110 120 100 100C90 120 70 130 50 120C40 100 50 80 70 70C50 60 40 40 50 20Z" fill="#e198b2" opacity="0.6"/> <path d="M100 60C120 50 140 60 150 80C160 60 180 50 200 60C210 80 200 100 180 110C200 120 210 140 200 160C180 170 160 160 150 140C140 160 120 170 100 160C90 140 100 120 120 110C100 100 90 80 100 60Z" fill="#d0bdf4" opacity="0.5"/> <circle cx="150" cy="110" r="10" fill="#fef6be"/> <path d="M20 50L60 90L40 110L20 70Z" fill="#a5d6a7" opacity="0.4"/> <path d="M10 80L40 120L20 140Z" fill="#d2b48c" opacity="0.3"/> </svg>
+        <svg class="flower-decor bottom-right" viewBox="0 0 200 200">
+            <path d="M50 20C70 10 90 20 100 40C110 20 130 10 150 20C160 40 150 60 130 70C150 80 160 100 150 120C130 130 110 120 100 100C90 120 70 130 50 120C40 100 50 80 70 70C50 60 40 40 50 20Z" fill="#e198b2" opacity="0.6"/>
+            <path d="M100 60C120 50 140 60 150 80C160 60 180 50 200 60C210 80 200 100 180 110C200 120 210 140 200 160C180 170 160 160 150 140C140 160 120 170 100 160C90 140 100 120 120 110C100 100 90 80 100 60Z" fill="#d0bdf4" opacity="0.5"/>
+            <circle cx="150" cy="110" r="10" fill="#fef6be"/>
+            <path d="M20 50L60 90L40 110L20 70Z" fill="#a5d6a7" opacity="0.4"/>
+            <path d="M10 80L40 120L20 140Z" fill="#d2b48c" opacity="0.3"/>
         </svg>
-        <svg class="flower-decor bottom-right" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="10" fill="#c5a059" opacity="0.3"/>
-            <path d="M50 40C55 20 75 20 80 40C85 60 65 65 50 60C35 65 15 60 20 40C25 20 45 20 50 40Z" fill="#e198b2" opacity="0.6"/>
-            <path d="M40 50C20 45 20 25 40 20C60 15 65 35 60 50C65 65 60 85 40 80C25 75 15 55 40 50Z" fill="#fce4ec" opacity="0.7"/>
-        </svg>
 
-        <h1>Mis XV Años</h1>
-        <div class="nombre">Vanessa</div>
-        
-        <p class="frase">"Un día para soñar, un momento para recordar y una vida para agradecer. ¡Te espero!"</p>
+        <div class="content">
+            <h1>Te invito a celebrar</h1>
+            <div class="nombre">Vanessa</div>
+            <div class="xv-title">Mis XV Años</div>
+            
+            <p class="frase">"Un día para soñar, un momento para recordar y una vida para agradecer. ¡Te espero!"</p>
 
-        <div class="countdown" id="countdown">
-            <div class="time-box"><span id="days">00</span><label>Días</label></div>
-            <div class="time-box"><span id="hours">00</span><label>Horas</label></div>
-            <div class="time-box"><span id="minutes">00</span><label>Min</label></div>
-            <div class="time-box"><span id="seconds">00</span><label>Seg</label></div>
+            <div class="countdown" id="countdown">
+                <div class="time-box"><span id="days">00</span><label>Días</label></div>
+                <div class="time-box"><span id="hours">00</span><label>Horas</label></div>
+                <div class="time-box"><span id="minutes">00</span><label>Min</label></div>
+                <div class="time-box"><span id="seconds">00</span><label>Seg</label></div>
+            </div>
+
+            <div class="event-block">
+                <p class="date">📅 SÁBADO | <strong>13 de Junio, 2026</strong></p>
+                <p class="time">⏰ 16:00 Horas (4:00 PM)</p>
+                <p class="salon">📍 Salón La Casa Grande</p>
+            </div>
+
+            <div class="map-container">
+                <iframe src="https://googleusercontent.com/maps.google.com/6" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+
+            <a href="https://googleusercontent.com/maps.google.com/7" target="_blank" class="btn btn-map">📍 Ver Ubicación en Google Maps</a>
+            
+            <a href="https://wa.me/525527516064?text=¡Hola! Confirmo mi asistencia a los XV de Vanessa." class="btn btn-rsvp">💌 Confirmar Asistencia</a>
         </div>
-
-        <div class="info-evento">
-            <p>📅 <strong>13 de Junio de 2026</strong></p>
-            <p>⏰ 16:00 Horas (4:00 PM)</p>
-            <p>📍 Salón: <span class="salon">La Casa Grande</span></p>
-        </div>
-
-        <div class="map-container">
-            <iframe src="https://googleusercontent.com/maps.google.com/6" allowfullscreen="" loading="lazy"></iframe>
-        </div>
-
-        <a href="https://googleusercontent.com/maps.google.com/7" target="_blank" class="btn btn-map">📍 Abrir Ubicación en Maps</a>
-        
-        <a href="https://wa.me/525527516064?text=¡Hola! Confirmo mi asistencia a los XV de Vanessa." class="btn btn-rsvp">💌 Confirmar Asistencia</a>
     </div>
 
     <script>
@@ -175,7 +207,7 @@
             const diff = eventDate - now;
 
             if (diff < 0) {
-                document.getElementById("countdown").innerHTML = "<h3>¡Llegó el gran día!</h3>";
+                document.getElementById("countdown").innerHTML = "<h3>¡Ya llegó el gran día!</h3>";
                 return;
             }
 
