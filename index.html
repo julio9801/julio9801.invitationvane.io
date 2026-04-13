@@ -5,223 +5,223 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis XV Años | Vanessa</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --color-principal: #e198b2; /* Rosa pastel elegante */
-            --color-dorado: #c5a059;
-            --texto-oscuro: #333;
-            --texto-suave: #666;
-            --fondo-acuarela: #fcf6f8;
+            --dorado: #c5a059;
+            --rosa-suave: #e198b2;
+            --texto: #444;
+            --fondo: #fcfaf8;
         }
 
         body {
-            background-color: #f0f0f0;
-            font-family: 'Montserrat', sans-serif;
+            background-color: #f0f0f0; /* Fondo externo */
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            color: var(--texto-oscuro);
-            padding: 20px;
+            font-family: 'Montserrat', sans-serif;
         }
 
-        .card {
-            background: rgba(255, 255, 255, 0.98);
-            max-width: 480px;
+        /* Tarjeta Principal */
+        .invitacion {
+            background-color: var(--fondo);
+            background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png'); /* Textura de papel */
             width: 100%;
-            padding: 60px 25px;
-            border-radius: 2px; /* Estilo de tarjeta impresa */
-            text-align: center;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            max-width: 500px;
+            margin: 20px;
+            padding: 80px 40px;
             position: relative;
-            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+            text-align: center;
             box-sizing: border-box;
             border: 1px solid #eee;
         }
 
-        /* FONDO DE ACUARELA SUAVE */
-        .card-bg {
+        /* Decoración Floral de Alta Calidad */
+        .flor {
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-color: var(--fondo-acuarela);
-            background-image: radial-gradient(#fff 20%, transparent 20%), radial-gradient(#fff 20%, transparent 20%);
-            background-size: 10px 10px;
-            background-position: 0 0, 5px 5px;
-            opacity: 0.1;
-            z-index: 0;
-        }
-
-        /* MARCO FLORAL SVG ESTILO ACUARELA (Integrado para cero errores) */
-        .flower-decor {
-            position: absolute;
-            width: 200px;
-            height: 200px;
+            width: 280px;
             z-index: 1;
             pointer-events: none;
         }
-        .top-left {
-            top: -20px; left: -20px;
+        .flor-top {
+            top: -50px;
+            right: -50px;
         }
-        .top-right {
-            top: -20px; right: -20px;
-            transform: scaleX(-1);
-        }
-        .bottom-left {
-            bottom: -20px; left: -20px;
-            transform: scaleY(-1);
-        }
-        .bottom-right {
-            bottom: -20px; right: -20px;
-            transform: scale(-1);
+        .flor-bottom {
+            bottom: -50px;
+            left: -50px;
+            transform: rotate(180deg);
         }
 
-        /* TEXTOS PRINCIPALES */
-        .content {
-            position: relative;
+        /* Marco sutil */
+        .inner-border {
+            position: absolute;
+            top: 25px; bottom: 25px; left: 25px; right: 25px;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            pointer-events: none;
             z-index: 2;
         }
 
-        h1 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 4px; color: #999; margin-bottom: 5px; }
-        .nombre { 
-            font-family: 'Dancing Script', cursive; 
-            font-size: 5.2rem; 
-            color: var(--texto-oscuro); 
-            margin: 10px 0; 
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.03); 
-        }
-        .xv-title {
-            font-size: 1.1rem;
-            color: var(--color-dorado);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-weight: 600;
-            margin-bottom: 25px;
-        }
-        .frase { font-style: italic; color: #777; font-size: 1rem; line-height: 1.7; margin: 0 auto 30px; max-width: 85%; }
+        .contenido { position: relative; z-index: 3; }
 
-        /* BLOQUE DE FECHA Y SALÓN */
-        .event-block {
+        h1 { 
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300; 
+            letter-spacing: 6px; 
+            font-size: 0.8rem; 
+            color: #888; 
+            text-transform: uppercase; 
+            margin-bottom: 20px;
+        }
+        
+        .nombre {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            color: var(--texto);
+            margin: 10px 0;
+            font-style: italic;
+        }
+
+        .xv {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            letter-spacing: 4px;
+            color: var(--dorado);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .frase {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1rem;
+            color: #777;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        /* Bloque de Información */
+        .datos {
             border-top: 1px solid #eee;
             border-bottom: 1px solid #eee;
             padding: 30px 0;
             margin: 30px 0;
-            background: rgba(255,255,255,0.6);
-        }
-        .date {
-            font-size: 1.1rem;
-            letter-spacing: 2px;
-            color: var(--texto-oscuro);
-            margin-bottom: 15px;
-        }
-        .time {
-            font-size: 1.1rem;
-            color: var(--color-principal);
-            font-weight: 600;
-        }
-        .salon { 
-            font-size: 1.5rem; 
-            color: var(--texto-oscuro); 
-            font-weight: 600; 
-            margin-top: 15px;
-            font-family: 'Montserrat', sans-serif;
         }
 
-        /* CONTADOR */
-        .countdown { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; }
-        .time-box { 
-            color: var(--texto-oscuro); 
-            padding: 10px; 
-            border-radius: 8px; 
-            width: 65px; 
+        .datos p { margin: 10px 0; font-size: 1.1rem; color: #555; }
+        .salon { font-weight: 600; color: #222; font-size: 1.3rem; display: block; margin-top: 5px; }
+
+        /* Contador */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        .time-box { text-align: center; min-width: 60px; }
+        .time-box span { display: block; font-size: 1.8rem; font-weight: 300; color: var(--texto); }
+        .time-box label { font-size: 0.6rem; text-transform: uppercase; color: var(--dorado); letter-spacing: 1px; }
+
+        /* Mapa e Interacción */
+        .map-wrapper {
+            margin: 30px 0;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            height: 250px;
             border: 1px solid #eee;
-            background: white;
         }
-        .time-box span { display: block; font-size: 1.8rem; font-weight: bold; }
-        .time-box label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #999; }
+        iframe { width: 100%; height: 100%; border: 0; }
 
-        /* MAPA Y BOTONES */
-        .map-container { margin: 30px 0; border-radius: 2px; overflow: hidden; border: 1px solid #eee; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        iframe { width: 100%; height: 200px; border: 0; }
+        .btn {
+            display: block;
+            text-decoration: none;
+            padding: 18px;
+            margin: 15px 0;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: 0.4s;
+        }
+        .btn-rsvp {
+            background-color: var(--texto);
+            color: white;
+        }
+        .btn-mapa {
+            background-color: white;
+            color: var(--dorado);
+            border: 1px solid var(--dorado);
+        }
+        .btn:hover { opacity: 0.8; transform: translateY(-2px); }
 
-        .btn { display: block; text-decoration: none; padding: 18px; border-radius: 2px; font-weight: 600; margin: 15px 0; transition: 0.4s; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; }
-        .btn-rsvp { background: var(--texto-oscuro); color: white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .btn-map { background: white; color: var(--color-dorado); border: 1px solid var(--color-dorado); }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
-
+        @media (max-width: 480px) {
+            .nombre { font-size: 3.5rem; }
+            .invitacion { padding: 60px 20px; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <div class="card-bg"></div>
+    <div class="invitacion">
+        <div class="inner-border"></div>
+        
+        <img src="https://i.ibb.co/YyY4R0G/flower-corner.png" class="flor flor-top" alt="decoracion">
+        <img src="https://i.ibb.co/YyY4R0G/flower-corner.png" class="flor flor-bottom" alt="decoracion">
 
-        <svg class="flower-decor top-left" viewBox="0 0 200 200">
-            <path d="M50 20C70 10 90 20 100 40C110 20 130 10 150 20C160 40 150 60 130 70C150 80 160 100 150 120C130 130 110 120 100 100C90 120 70 130 50 120C40 100 50 80 70 70C50 60 40 40 50 20Z" fill="#e198b2" opacity="0.6"/> <path d="M100 60C120 50 140 60 150 80C160 60 180 50 200 60C210 80 200 100 180 110C200 120 210 140 200 160C180 170 160 160 150 140C140 160 120 170 100 160C90 140 100 120 120 110C100 100 90 80 100 60Z" fill="#d0bdf4" opacity="0.5"/> <circle cx="150" cy="110" r="10" fill="#fef6be"/> <path d="M20 50L60 90L40 110L20 70Z" fill="#a5d6a7" opacity="0.4"/> <path d="M10 80L40 120L20 140Z" fill="#d2b48c" opacity="0.3"/> </svg>
-        <svg class="flower-decor bottom-right" viewBox="0 0 200 200">
-            <path d="M50 20C70 10 90 20 100 40C110 20 130 10 150 20C160 40 150 60 130 70C150 80 160 100 150 120C130 130 110 120 100 100C90 120 70 130 50 120C40 100 50 80 70 70C50 60 40 40 50 20Z" fill="#e198b2" opacity="0.6"/>
-            <path d="M100 60C120 50 140 60 150 80C160 60 180 50 200 60C210 80 200 100 180 110C200 120 210 140 200 160C180 170 160 160 150 140C140 160 120 170 100 160C90 140 100 120 120 110C100 100 90 80 100 60Z" fill="#d0bdf4" opacity="0.5"/>
-            <circle cx="150" cy="110" r="10" fill="#fef6be"/>
-            <path d="M20 50L60 90L40 110L20 70Z" fill="#a5d6a7" opacity="0.4"/>
-            <path d="M10 80L40 120L20 140Z" fill="#d2b48c" opacity="0.3"/>
-        </svg>
-
-        <div class="content">
-            <h1>Te invito a celebrar</h1>
+        <div class="contenido">
+            <h1>Te invito a mis</h1>
+            <span class="xv">XV AÑOS</span>
             <div class="nombre">Vanessa</div>
-            <div class="xv-title">Mis XV Años</div>
             
-            <p class="frase">"Un día para soñar, un momento para recordar y una vida para agradecer. ¡Te espero!"</p>
+            <p class="frase">"Hay momentos en la vida que son especiales,<br>pero compartirlos con ustedes los hace inolvidables."</p>
 
-            <div class="countdown" id="countdown">
+            <div class="countdown" id="timer">
                 <div class="time-box"><span id="days">00</span><label>Días</label></div>
-                <div class="time-box"><span id="hours">00</span><label>Horas</label></div>
+                <div class="time-box"><span id="hours">00</span><label>Hrs</label></div>
                 <div class="time-box"><span id="minutes">00</span><label>Min</label></div>
                 <div class="time-box"><span id="seconds">00</span><label>Seg</label></div>
             </div>
 
-            <div class="event-block">
-                <p class="date">📅 SÁBADO | <strong>13 de Junio, 2026</strong></p>
-                <p class="time">⏰ 16:00 Horas (4:00 PM)</p>
-                <p class="salon">📍 Salón La Casa Grande</p>
+            <div class="datos">
+                <p>📅 Sábado, 13 de Junio de 2026</p>
+                <p>⏰ 4:00 PM</p>
+                <p>📍 Salón de Eventos:<br><span class="salon">La Casa Grande</span></p>
             </div>
 
-            <div class="map-container">
-                <iframe src="https://googleusercontent.com/maps.google.com/6" allowfullscreen="" loading="lazy"></iframe>
+            <div class="map-wrapper">
+              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3764.9707053410407!2d-99.29696692580913!3d19.32707744404438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cdf8a6cddc0741%3A0x3f57867fea4fbbaa!2sSal%C3%B3n%20de%20eventos%20La%20Casa%20Grande!5e0!3m2!1ses!2sus!4v1776122617871!5m2!1ses!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
 
-            <a href="https://googleusercontent.com/maps.google.com/7" target="_blank" class="btn btn-map">📍 Ver Ubicación en Google Maps</a>
-            
+            <a href="https://maps.google.com/?q=La+Casa+Grande+Salon+Eventos" target="_blank" class="btn btn-mapa">📍 Cómo llegar</a>
             <a href="https://wa.me/525527516064?text=¡Hola! Confirmo mi asistencia a los XV de Vanessa." class="btn btn-rsvp">💌 Confirmar Asistencia</a>
         </div>
     </div>
 
     <script>
-        // Fecha del evento: 13 de junio de 2026 a las 16:00
-        const eventDate = new Date("June 13, 2026 16:00:00").getTime();
+        const targetDate = new Date("June 13, 2026 16:00:00").getTime();
 
-        setInterval(() => {
+        function updateTimer() {
             const now = new Date().getTime();
-            const diff = eventDate - now;
-
-            if (diff < 0) {
-                document.getElementById("countdown").innerHTML = "<h3>¡Ya llegó el gran día!</h3>";
-                return;
-            }
+            const diff = targetDate - now;
 
             const d = Math.floor(diff / (1000 * 60 * 60 * 24));
             const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
             const s = Math.floor((diff % (1000 * 60)) / 1000);
 
-            document.getElementById("days").innerText = d;
-            document.getElementById("hours").innerText = h;
-            document.getElementById("minutes").innerText = m;
-            document.getElementById("seconds").innerText = s;
-        }, 1000);
+            document.getElementById("days").innerHTML = d < 10 ? '0'+d : d;
+            document.getElementById("hours").innerHTML = h < 10 ? '0'+h : h;
+            document.getElementById("minutes").innerHTML = m < 10 ? '0'+m : m;
+            document.getElementById("seconds").innerHTML = s < 10 ? '0'+s : s;
+        }
+        setInterval(updateTimer, 1000);
+        updateTimer();
     </script>
-
 </body>
 </html>
