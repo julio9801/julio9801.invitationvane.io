@@ -9,14 +9,14 @@
 
     <style>
         :root {
-            --color-principal: #e198b2; /* Rosa pastel elegante */
+            --color-principal: #e198b2; 
             --color-dorado: #c5a059;
-            --fondo-floral: url('https://www.transparenttextures.com/patterns/p6.png'); 
         }
 
         body {
-            background-color: #fdfafb;
-            background-image: var(--fondo-floral);
+            background-color: #fff5f8;
+            /* Fondo sutil floral */
+            background-image: url('https://www.transparenttextures.com/patterns/p6.png');
             font-family: 'Montserrat', sans-serif;
             margin: 0;
             display: flex;
@@ -27,74 +27,75 @@
         }
 
         .card {
-            background: white;
-            max-width: 500px;
+            background: rgba(255, 255, 255, 0.95);
+            max-width: 480px;
             width: 90%;
-            padding: 50px 25px;
-            border-radius: 20px;
+            padding: 60px 25px;
+            border-radius: 30px;
             text-align: center;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-            margin: 20px 0;
-            border: 1px solid #f0f0f0;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            margin: 40px 0;
+            border: 1px solid #fce4ec;
             position: relative;
             overflow: hidden;
         }
 
-        /* Adorno floral en las esquinas */
-        .card::before, .card::after {
-            content: "";
+        /* Flores en las esquinas - Imágenes Reales */
+        .flower {
             position: absolute;
-            width: 120px;
-            height: 120px;
-            background-repeat: no-repeat;
-            background-size: contain;
-            opacity: 0.4;
+            width: 180px; /* Tamaño de las flores */
+            z-index: 0;
+            pointer-events: none;
         }
-        .card::before {
-            top: 0; left: 0;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23e198b2" d="M0,0 Q50,0 50,50 Q0,50 0,100 Z" /></svg>');
+        .top-left {
+            top: -20px;
+            left: -20px;
         }
-        .card::after {
-            bottom: 0; right: 0;
+        .bottom-right {
+            bottom: -20px;
+            right: -20px;
             transform: rotate(180deg);
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23e198b2" d="M0,0 Q50,0 50,50 Q0,50 0,100 Z" /></svg>');
         }
 
-        h1 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 3px; color: #888; margin-bottom: 0; position: relative; z-index: 1; }
-        .nombre { font-family: 'Dancing Script', cursive; font-size: 4.5rem; color: var(--color-principal); margin: 5px 0; position: relative; z-index: 1; }
-        .frase { font-style: italic; color: #666; font-size: 0.9rem; margin-bottom: 25px; position: relative; z-index: 1; }
+        h1 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 4px; color: #999; margin-bottom: 0; position: relative; z-index: 1; }
+        .nombre { font-family: 'Dancing Script', cursive; font-size: 4.5rem; color: var(--color-principal); margin: 10px 0; position: relative; z-index: 1; text-shadow: 1px 1px 2px rgba(0,0,0,0.05); }
+        .frase { font-style: italic; color: #666; font-size: 0.95rem; line-height: 1.6; margin-bottom: 30px; position: relative; z-index: 1; }
 
         .info-evento {
             font-size: 1.1rem;
-            border-top: 1px solid #eee;
-            border-bottom: 1px solid #eee;
-            padding: 15px 0;
-            margin: 20px 0;
+            border-top: 1px solid #fce4ec;
+            border-bottom: 1px solid #fce4ec;
+            padding: 20px 0;
+            margin: 25px 0;
             position: relative;
             z-index: 1;
+            background: rgba(255, 245, 248, 0.5);
         }
 
         /* Contador */
-        .countdown { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; position: relative; z-index: 1; }
-        .time-box { background: var(--color-principal); color: white; padding: 8px; border-radius: 10px; width: 65px; }
-        .time-box span { display: block; font-size: 1.4rem; font-weight: bold; }
-        .time-box label { font-size: 0.6rem; text-transform: uppercase; }
+        .countdown { display: flex; justify-content: center; gap: 12px; margin-bottom: 30px; position: relative; z-index: 1; }
+        .time-box { background: var(--color-principal); color: white; padding: 10px; border-radius: 12px; width: 68px; box-shadow: 0 4px 10px rgba(225, 152, 178, 0.3); }
+        .time-box span { display: block; font-size: 1.6rem; font-weight: bold; }
+        .time-box label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Mapa */
-        .map-container { margin: 20px 0; border-radius: 15px; overflow: hidden; border: 2px solid #eee; position: relative; z-index: 1; }
+        /* Mapa Seguro */
+        .map-container { margin: 25px 0; border-radius: 20px; overflow: hidden; border: 3px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.08); position: relative; z-index: 1; }
         iframe { width: 100%; height: 250px; border: 0; }
 
         /* Botones */
-        .btn { display: block; text-decoration: none; padding: 15px; border-radius: 50px; font-weight: 600; margin: 10px 0; transition: 0.3s; position: relative; z-index: 1; }
-        .btn-rsvp { background: var(--color-principal); color: white; box-shadow: 0 4px 15px rgba(225, 152, 178, 0.4); }
+        .btn { display: block; text-decoration: none; padding: 16px; border-radius: 50px; font-weight: 600; margin: 12px 0; transition: 0.4s; position: relative; z-index: 1; }
+        .btn-rsvp { background: var(--color-principal); color: white; box-shadow: 0 6px 20px rgba(225, 152, 178, 0.4); }
         .btn-map { background: white; color: var(--color-dorado); border: 2px solid var(--color-dorado); }
-        .btn:hover { transform: scale(1.02); }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
 
     </style>
 </head>
 <body>
 
     <div class="card">
+        <img src="https://i.ibb.co/YyY4R0G/flower-corner.png" class="flower top-left" alt="decoración">
+        <img src="https://i.ibb.co/YyY4R0G/flower-corner.png" class="flower bottom-right" alt="decoración">
+
         <h1>Mis XV Años</h1>
         <div class="nombre">Vanessa</div>
         
@@ -114,16 +115,15 @@
         </div>
 
         <div class="map-container">
-            <iframe src="http://googleusercontent.com/maps.google.com/6" allowfullscreen="" loading="lazy"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.661!2d-99.167!3d19.432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDI1JzU1LjIiTiA5OcKwMTAnMDAuOCJX!5e0!3m2!1ses!2smx!4v1700000000000!5m2!1ses!2smx" allowfullscreen="" loading="lazy"></iframe>
         </div>
 
-        <a href="http://googleusercontent.com/maps.google.com/7" target="_blank" class="btn btn-map">Abrir Ubicación en Maps</a>
+        <a href="https://maps.app.goo.gl/qX8W6C8XJ3Wp9wU8A" target="_blank" class="btn btn-map">📍 Abrir Ubicación en Maps</a>
         
-        <a href="https://wa.me/525527516064?text=¡Hola! Confirmo mi asistencia a los XV de Vanessa." class="btn btn-rsvp">Confirmar Asistencia</a>
+        <a href="https://wa.me/525527516064?text=¡Hola! Confirmo mi asistencia a los XV de Vanessa." class="btn btn-rsvp">💌 Confirmar Asistencia</a>
     </div>
 
     <script>
-        // Fecha del evento: 13 de junio de 2026 a las 16:00
         const eventDate = new Date("June 13, 2026 16:00:00").getTime();
 
         setInterval(() => {
