@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis XV Años | Invitación</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS: El diseño de la invitación */
+        :root {
+            --color-principal: #b084b4; /* Lila/Morado */
+            --color-dorado: #d4af37;
+            --fondo: #fcf8f8;
+        }
+
+        body {
+            background-color: var(--fondo);
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .card {
+            background: white;
+            max-width: 450px;
+            width: 90%;
+            padding: 40px 20px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 1px solid #eee;
+            position: relative;
+            margin: 20px 0;
+        }
+
+        /* Adorno floral o borde */
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 10px; bottom: 10px; left: 10px; right: 10px;
+            border: 2px solid var(--color-dorado);
+            border-radius: 15px;
+            pointer-events: none;
+            opacity: 0.3;
+        }
+
+        h1 { font-size: 1rem; text-transform: uppercase; letter-spacing: 4px; color: #777; }
+        
+        .nombre {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: var(--color-principal);
+            margin: 10px 0;
+        }
+
+        .info { font-size: 1.1rem; margin-bottom: 20px; }
+        .frase { font-style: italic; color: #555; margin-bottom: 30px; }
+
+        /* Estilos del Contador */
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .time-box {
+            background: var(--color-principal);
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            min-width: 60px;
+        }
+
+        .time-box span { display: block; font-size: 1.5rem; font-weight: bold; }
+        .time-box label { font-size: 0.7rem; text-transform: uppercase; }
+
+        /* Botones Interactivos */
+        .buttons { display: flex; flex-direction: column; gap: 15px; margin-top: 30px; }
+
+        .btn {
+            text-decoration: none;
+            padding: 15px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .btn-maps {
+            background: transparent;
+            color: var(--color-dorado);
+            border: 2px solid var(--color-dorado);
+        }
+
+        .btn-rsvp {
+            background: var(--color-principal);
+            color: white;
+            box-shadow: 0 4px 15px rgba(176, 132, 180, 0.4);
+        }
+
+        .btn:hover { transform: translateY(-3px); opacity: 0.9; }
+
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Mis XV Años</h1>
+        <div class="nombre">Lucía Pérez</div>
+        
+        <p class="frase">"Hay momentos que son inolvidables, y compartirlos con quienes más quiero los hace mágicos."</p>
+
+        <div class="info">
+            <p><strong>25 de Octubre, 2026</strong></p>
+            <p>📍 Salón "Los Ángeles", Ciudad de México</p>
+        </div>
+
+        <div class="countdown-container" id="countdown">
+            <div class="time-box">
+                <span id="days">00</span>
+                <label>Días</label>
+            </div>
+            <div class="time-box">
+                <span id="hours">00</span>
+                <label>Hrs</label>
+            </div>
+            <div class="time-box">
+                <span id="minutes">00</span>
+                <label>Min</label>
+            </div>
+            <div class="time-box">
+                <span id="seconds">00</span>
+                <label>Seg</label>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <a href="https://maps.app.goo.gl/uXpX" target="_blank" class="btn btn-maps">Ver Ubicación en Maps</a>
+            <a href="https://wa.me/521234567890?text=¡Hola! Confirmo mi asistencia con mucho gusto." class="btn btn-rsvp">Confirmar por WhatsApp</a>
+        </div>
+    </div>
+
+    <script>
+        // SCRIPT PARA LA CUENTA REGRESIVA
+        // 1. Configura la fecha aquí (Formato: Mes Día, Año Hora)
+        const eventDate = new Date("Oct 25, 2026 19:00:00").getTime();
+
+        const updateCountdown = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            // Cálculos de tiempo
+            const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Inyectar en el HTML
+            document.getElementById("days").innerText = d;
+            document.getElementById("hours").innerText = h;
+            document.getElementById("minutes").innerText = m;
+            document.getElementById("seconds").innerText = s;
+
+            // Si la fecha ya pasó
+            if (distance < 0) {
+                clearInterval(updateCountdown);
+                document.getElementById("countdown").innerHTML = "<h3>¡Llegó el gran día!</h3>";
+            }
+        }, 1000);
+    </script>
+
+</body>
+</html>
