@@ -11,11 +11,12 @@
         :root {
             --color-principal: #e198b2; /* Rosa pastel elegante */
             --color-dorado: #c5a059;
-            --fondo: #f9f9f9;
+            --fondo-floral: url('https://www.transparenttextures.com/patterns/p6.png'); 
         }
 
         body {
-            background-color: var(--fondo);
+            background-color: #fdfafb;
+            background-image: var(--fondo-floral);
             font-family: 'Montserrat', sans-serif;
             margin: 0;
             display: flex;
@@ -29,75 +30,65 @@
             background: white;
             max-width: 500px;
             width: 90%;
-            padding: 30px 15px;
+            padding: 50px 25px;
             border-radius: 20px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
             margin: 20px 0;
             border: 1px solid #f0f0f0;
+            position: relative;
+            overflow: hidden;
         }
 
-        h1 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 3px; color: #888; margin-bottom: 0; }
-        
-        .nombre {
-            font-family: 'Dancing Script', cursive;
-            font-size: 4.5rem;
-            color: var(--color-principal);
-            margin: 5px 0;
+        /* Adorno floral en las esquinas */
+        .card::before, .card::after {
+            content: "";
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background-repeat: no-repeat;
+            background-size: contain;
+            opacity: 0.4;
+        }
+        .card::before {
+            top: 0; left: 0;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23e198b2" d="M0,0 Q50,0 50,50 Q0,50 0,100 Z" /></svg>');
+        }
+        .card::after {
+            bottom: 0; right: 0;
+            transform: rotate(180deg);
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23e198b2" d="M0,0 Q50,0 50,50 Q0,50 0,100 Z" /></svg>');
         }
 
-        .frase { font-style: italic; color: #666; font-size: 0.9rem; padding: 0 20px; margin-bottom: 25px; }
+        h1 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 3px; color: #888; margin-bottom: 0; position: relative; z-index: 1; }
+        .nombre { font-family: 'Dancing Script', cursive; font-size: 4.5rem; color: var(--color-principal); margin: 5px 0; position: relative; z-index: 1; }
+        .frase { font-style: italic; color: #666; font-size: 0.9rem; margin-bottom: 25px; position: relative; z-index: 1; }
 
-        .info-boda {
+        .info-evento {
             font-size: 1.1rem;
             border-top: 1px solid #eee;
             border-bottom: 1px solid #eee;
             padding: 15px 0;
             margin: 20px 0;
+            position: relative;
+            z-index: 1;
         }
 
         /* Contador */
-        .countdown {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 25px;
-        }
-        .time-box {
-            background: var(--color-principal);
-            color: white;
-            padding: 8px;
-            border-radius: 10px;
-            width: 65px;
-        }
+        .countdown { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; position: relative; z-index: 1; }
+        .time-box { background: var(--color-principal); color: white; padding: 8px; border-radius: 10px; width: 65px; }
         .time-box span { display: block; font-size: 1.4rem; font-weight: bold; }
         .time-box label { font-size: 0.6rem; text-transform: uppercase; }
 
         /* Mapa */
-        .map-container {
-            margin: 20px 0;
-            border-radius: 15px;
-            overflow: hidden;
-            border: 2px solid #eee;
-        }
-        iframe { width: 100%; height: 200px; border: 0; }
+        .map-container { margin: 20px 0; border-radius: 15px; overflow: hidden; border: 2px solid #eee; position: relative; z-index: 1; }
+        iframe { width: 100%; height: 250px; border: 0; }
 
         /* Botones */
-        .btn {
-            display: block;
-            text-decoration: none;
-            padding: 15px;
-            border-radius: 50px;
-            font-weight: 600;
-            margin: 10px 0;
-            transition: 0.3s;
-        }
-        .btn-rsvp {
-            background: var(--color-principal);
-            color: white;
-            box-shadow: 0 4px 15px rgba(225, 152, 178, 0.4);
-        }
-        .btn-rsvp:hover { transform: scale(1.02); }
+        .btn { display: block; text-decoration: none; padding: 15px; border-radius: 50px; font-weight: 600; margin: 10px 0; transition: 0.3s; position: relative; z-index: 1; }
+        .btn-rsvp { background: var(--color-principal); color: white; box-shadow: 0 4px 15px rgba(225, 152, 178, 0.4); }
+        .btn-map { background: white; color: var(--color-dorado); border: 2px solid var(--color-dorado); }
+        .btn:hover { transform: scale(1.02); }
 
     </style>
 </head>
@@ -107,7 +98,7 @@
         <h1>Mis XV Años</h1>
         <div class="nombre">Vanessa</div>
         
-        <p class="frase">"Un día para soñar, un momento para recordar y una vida para agradecer. ¡Acompáñame!"</p>
+        <p class="frase">"Un día para soñar, un momento para recordar y una vida para agradecer. ¡Te espero!"</p>
 
         <div class="countdown" id="countdown">
             <div class="time-box"><span id="days">00</span><label>Días</label></div>
@@ -116,26 +107,33 @@
             <div class="time-box"><span id="seconds">00</span><label>Seg</label></div>
         </div>
 
-        <div class="info-boda">
+        <div class="info-evento">
             <p>📅 <strong>13 de Junio de 2026</strong></p>
-            <p>⏰ 16:00 Horas</p>
-            <p>📍 Salón de Eventos "La Casa Grande"</p>
+            <p>⏰ 16:00 Horas (4:00 PM)</p>
+            <p>📍 Salón: <strong>La Casa Grande</strong></p>
         </div>
 
         <div class="map-container">
-           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4477.333494334857!2d-99.29780733421019!3d19.32694814286376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cdf8a6cddc0741%3A0x3f57867fea4fbbaa!2sSal%C3%B3n%20de%20eventos%20La%20Casa%20Grande!5e0!3m2!1ses!2sus!4v1776120804956!5m2!1ses!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="http://googleusercontent.com/maps.google.com/6" allowfullscreen="" loading="lazy"></iframe>
         </div>
 
-       <a href="https://wa.me/525527516064?text=¡Hola! Confirmo mi asistencia a los XV de Vanessa." class="btn btn-rsvp">Confirmar Asistencia</a>
+        <a href="http://googleusercontent.com/maps.google.com/7" target="_blank" class="btn btn-map">Abrir Ubicación en Maps</a>
+        
+        <a href="https://wa.me/525527516064?text=¡Hola! Confirmo mi asistencia a los XV de Vanessa." class="btn btn-rsvp">Confirmar Asistencia</a>
     </div>
 
     <script>
-        // Configuración de la fecha
-        const eventDate = new Date("June 13, 2026 19:00:00").getTime();
+        // Fecha del evento: 13 de junio de 2026 a las 16:00
+        const eventDate = new Date("June 13, 2026 16:00:00").getTime();
 
         setInterval(() => {
             const now = new Date().getTime();
             const diff = eventDate - now;
+
+            if (diff < 0) {
+                document.getElementById("countdown").innerHTML = "<h3>¡Es hoy!</h3>";
+                return;
+            }
 
             const d = Math.floor(diff / (1000 * 60 * 60 * 24));
             const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
